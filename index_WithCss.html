@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="MarkE0">
+    <meta name="keywords" content="MarkE0, HTML, CSS">
+    <meta name="author" content="MarkE0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" type="text/css" href="styles/styles.css"> -->
+<style>
+body {
+    background-color: #333;
+    background-image: linear-gradient(to bottom right, #444455, #001122);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 97vh;
+    margin: 0;
+    color: #ddd;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    position: absolute;
+    top: 10px;
+    right: 500px;
+    color: white;
+    a {
+      color: #aaf;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #77e;
+      text-decoration: underline;
+    }
+}
+
+.flex-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* height: 100vh; */
+}
+
+.flex-tilepaddding {
+    padding: 15px;
+}
+
+.flex-tile {
+    background-color: #258;
+    background-image: linear-gradient(to bottom right, #225588, #255899, #225588);
+    color: white;
+    height: 150px;
+    width: 250px;
+    text-align: center; 
+    /* line-height: 150px; */
+    border-radius: 5%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    /* padding: 1px; */
+}
+</style>
+
+    <title>MarkE0</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>MarkE0</h1>
+      <!-- <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav> -->
+      <nav style="position: absolute; top: 10px; right: 10px; color:white;">
+        <a href="index.html">Home</a> &nbsp; 
+        <a href="about.html">About</a> &nbsp; 
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>Reference</h2>
+        Notes and keywords associated with technologies of interest.
+
+        <div class="flex-container">
+          <div class="flex-tilepadding">
+           <div class="flex-tile">
+            <h2>HTML</h2>
+            Brief coverage of HTML5
+           </div>
+          </div>
+
+          <div class="flex-tilepadding">
+            <div class="flex-tile">
+              <h2>CSS</h2>
+            Cascading Style Sheets
+           </div>
+          </div>
+
+          <div class="flex-tilepadding">
+            <div class="flex-tile">
+              <h2>JavaScript</h2>
+            JavaScript
+           </div>
+          </div>
+        </div>
+      </section>
+      <br><br><br>
+
+      <footer>
+        <p>&copy; 2024-2025 MarkE0</p>
+      </footer>
+  </body>
+</html>
