@@ -9,5 +9,5 @@ Initial ReadMe file.
   + HTML
   + CSS
   + JavaScript
-+ ??
-  + git commands
++ Git Commands
+  + [Git Commands Summary](git-commands.html)
