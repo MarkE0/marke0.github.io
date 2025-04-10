@@ -5,7 +5,7 @@ body {
     background-size: cover;
     height: 97vh;
     margin: 0;
-    color: #ddd;
+    color: #dde;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -25,12 +25,45 @@ nav {
     }
 }
 
+.top-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.top-menu a {
+    color: #aac;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.top-menu a:hover {
+    color: #77e;
+    text-decoration: underline;
+}
+
+.introduction {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(235, 245, 255, 0.7);
+    border-radius: 10px;
+    color: #114;
+}
+
+.tiles-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
 .flex-container {
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    /* height: 100vh; */
+    justify-content: center;
+    gap: 20px;
 }
 
 .flex-tilepaddding {
@@ -42,10 +75,24 @@ nav {
     background-image: linear-gradient(to bottom right, #225588, #255899, #225588);
     color: white;
     height: 150px;
-    width: 250px;
+    width: 200px;
     text-align: center; 
-    /* line-height: 150px; */
-    border-radius: 5%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.flex-tile a {
+    color: white;
+    text-decoration: none;
+}
+
+.flex-tile:hover {
+    background-color: #336699;
+    cursor: pointer;
 }
 
 footer {
@@ -53,7 +100,11 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
-    /* padding: 1px; */
+}
+
+.copyright {
+    color: #aaa;
+    font-size: 14px;
 }
 
 .git-commands-table {

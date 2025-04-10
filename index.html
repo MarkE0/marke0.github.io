@@ -3,52 +3,59 @@
   <head>
     <meta charset="utf-8">
     <meta name="description" content="MarkE0">
-    <meta name="keywords" content="MarkE0, HTML, CSS">
+    <meta name="keywords" content="MarkE0, HTML, CSS, JavaScript, Git">
     <meta name="author" content="MarkE0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-
-    <title>MarkE0</title>
+    <title>MarkE0 - Home</title>
   </head>
-
   <body>
     <header>
       <h1>MarkE0</h1>
-      <!-- <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav> -->
+      <nav class="top-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </header>
-
     <main>
-      <section>
-        <h2>Reference</h2>
-        Notes and keywords associated with technologies of interest.
-
+      <section class="introduction">
+        <h2>Hello!</h2>
+        <p> I'm MarkE0. I'm a developer with interests in automation, scripting, and some web technologies.
+            This website is (or will be) a collection of my notes, references, and projects. Feel free to explore!</p>
+      </section>
+      <section class="tiles-section">
+        <h2>Explore</h2>
         <div class="flex-container">
-          <div>
-            <h2>HTML</h2>
-            Brief coverage of HTML5
+          <div class="flex-tile">
+            <a href="html.html">
+              <h3>HTML</h3>
+              <p>Learn about HTML5</p>
+            </a>
           </div>
-
-          <div>
-            <h2>CSS</h2>
-            Cascading Style Sheets
+          <div class="flex-tile">
+            <a href="css.html">
+              <h3>CSS</h3>
+              <p>Explore Cascading Style Sheets</p>
+            </a>
           </div>
-          <div>
-            <h2>JavaScript</h2>
-            JavaScript
+          <div class="flex-tile">
+            <a href="javascript.html">
+              <h3>JavaScript</h3>
+              <p>Dive into JavaScript</p>
+            </a>
+          </div>
+          <div class="flex-tile">
+            <a href="git-commands.html">
+              <h3>Git</h3>
+              <p>Git Helper Notes</p>
+            </a>
           </div>
         </div>
       </section>
-      <br><br><br>
-
-      <footer>
-        <p>&copy; 2024 MarkE0</p>
-      </footer>
+    </main>
+    <footer>
+      <p class="copyright">&copy; 2024-2025 MarkE0</p>
+    </footer>
   </body>
 </html>
