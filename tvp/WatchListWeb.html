@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<style>
+			.row {
+				  display: flex;
+			}
+			
+			.column {
+				  flex: 33%;
+			}
+			
+			.column1 {
+				  flex: 200px;
+			}
+			
+			.column2 {
+				  flex: 300px;
+			}
+			
+			.column3 {
+				  flex: 600px;
+			}
+		</style>
+
+		<script type="text/javascript" src="watchListSource.js"></script>
+		<script type="text/javascript" src="watchListWeb.js"></script>
+	 </head>
+
+	 
+	<body>
+		<div class="row">
+			<div class="column1">
+				<h3>Filters</h3>
+				<p>
+					<form name=filtersForm>
+						<font size=4><u><b>Status</b></u><br /></font>
+						<input type=checkbox name=statusCurrent       checked onclick='buildFromFilters()'>Current</input><br />
+						<input type=checkbox name=statusBorrowed      checked onclick='buildFromFilters()'>Borrowed</input><br />
+						<input type=checkbox name=statusSoon        unchecked onclick='buildFromFilters()'>Soon</input><br />
+						<input type=checkbox name=statusBacklog     unchecked onclick='buildFromFilters()'>Backlog</input><br />
+						<input type=checkbox name=statusTobechecked   checked onclick='buildFromFilters()'>To Be Checked</input><br />
+						<input type=checkbox name=statusWatched     unchecked onclick='buildFromFilters()'>Watched</input><br />
+						<input type=checkbox name=statusWaitingfor  unchecked onclick='buildFromFilters()'>Waiting For</input><br />
+						<input type=checkbox name=statusUnavailable unchecked onclick='buildFromFilters()'>Unavailable</input><br />
+						<br />
+
+						<!-- WATCHERS -->
+						<font size=4><u><b>Who's Watching</b></u><br /></font>
+						<input type=checkbox name=watcherM2  checked onclick='buildFromFilters()'>M2</input><br />
+						<input type=checkbox name=watcherM1  checked onclick='buildFromFilters()'>M1</input><br />
+
+						<br />
+
+						<font size=4><u><b>Started (Unfinished)</b></u><br /></font>
+						<input type=checkbox name=startedYes  unchecked onclick='buildFromFilters()'>Started</input><br />
+						<br />
+
+						<!-- TYPES (template value) -->
+						<font size=4><u><b>Types</b></u><br /></font>
+						<input type=checkbox name=typeMovie   checked onclick='buildFromFilters()'>Movie</input><br />
+						<input type=checkbox name=typeSeries   checked onclick='buildFromFilters()'>Series</input><br />
+						<input type=checkbox name=typezzzOther   checked onclick='buildFromFilters()'>Other</input><br />
+
+						<br />
+
+						<!-- CATEGORIES -->
+						<font size=4><u><b>Categories</b></u><br /></font>
+						<input type=checkbox name=categoryAction   checked onclick='buildFromFilters()'>Action</input><br />
+						<input type=checkbox name=categoryAfternoon   checked onclick='buildFromFilters()'>Afternoon</input><br />
+						<input type=checkbox name=categoryChristmas   checked onclick='buildFromFilters()'>Christmas</input><br />
+						<input type=checkbox name=categoryComedy   checked onclick='buildFromFilters()'>Comedy</input><br />
+						<input type=checkbox name=categoryDocumentary   checked onclick='buildFromFilters()'>Documentary</input><br />
+						<input type=checkbox name=categoryDrama   checked onclick='buildFromFilters()'>Drama</input><br />
+						<input type=checkbox name=categoryzzzOther   checked onclick='buildFromFilters()'>Other</input><br />
+
+						<!--Action<br />
+						Comedy<br />
+						Drama<br />
+						Other<br />-->
+						<br />
+
+						<!-- SOURCES -->
+						<font size=4><u><b>Sources</b></u><br /></font>
+						Select: 
+						<b onclick='setAllSources(false); buildFromFilters()'>None</b> | 
+						<b onclick='setAllSources(true);  buildFromFilters()'>All</b><br />
+						<input type=checkbox name=sourceAmazon    checked onclick='buildFromFilters()'>Amazon</input><br />
+						<input type=checkbox name=sourceBluRay    checked onclick='buildFromFilters()'>BluRay</input><br />
+						<input type=checkbox name=sourceDigital    checked onclick='buildFromFilters()'>Digital</input><br />
+						<input type=checkbox name=sourceDVD    checked onclick='buildFromFilters()'>DVD</input><br />
+						<input type=checkbox name=sourceiPlayer    checked onclick='buildFromFilters()'>iPlayer</input><br />
+						<input type=checkbox name=sourceNetFlix    checked onclick='buildFromFilters()'>NetFlix</input><br />
+						<input type=checkbox name=sourceVHS    checked onclick='buildFromFilters()'>VHS</input><br />
+						<input type=checkbox name=sourceVirgin    checked onclick='buildFromFilters()'>Virgin</input><br />
+						<input type=checkbox name=sourceYouTube    checked onclick='buildFromFilters()'>YouTube</input><br />
+						<input type=checkbox name=sourceYouView    checked onclick='buildFromFilters()'>YouView</input><br />
+						<input type=checkbox name=sourcezzzNoSource    unchecked onclick='buildFromFilters()'>NoSource</input><br />
+
+						<br />
+
+						<font size=4><u><b>Ordering</b></u><br /></font>
+						Alphabetical<br />
+						Priority/Status<br />
+						Rating<br />
+						<br />
+
+						<font size=4><u><b>Excel Source File</b></u><br /></font>
+						<a href="file:///C:\Users\Mark\Dropbox\Projects\Development\TvPlanner\TV_Planner_ASTABLE.xlsx">Windows</a> / 
+						<a href="ms-excel:ofe|u|file:///storage/emulated/0/Android/data/com.dropbox.android/files/u100290326/scratch/Projects/Development/TVPlanner/TV_Planner_ASTABLE.xlsx">Android</a>
+					</form>
+				</p>
+			</div>
+
+			
+			<div class="column2">
+				<h2 id="listHeader">List</h2>
+					<p id="currentListing">LISTING</p>
+			</div>
+
+			
+			<div class="column3">
+				<h2>Item Details</h2>
+				<table border=1>
+					<tr><td width=400px id="detailsTopLeft" valign="top">Title<br />Duration | Rating<br />Status:<br />Watched:<br /><br /></td><td width=200px id="detailsTopRight"></td></tr>
+					<tr><td id="itemSummary" colspan="2">&nbsp;</td></tr>
+					<tr><td>Notes:</td><td id="itemNotes">&nbsp;</td></tr>
+					<tr><td>Sources:</td><td id="itemSources">&nbsp;</td></tr>
+					<tr><td>Types:</td><td id="itemType">&nbsp;</td></tr>
+					<tr><td>Categories:</td><td id="itemCategory">&nbsp;</td></tr>
+					<tr><td>Owner:</td><td id="itemOwner">&nbsp;</td></tr>
+				</table><!--
+				<table border=1>
+					<tr><td>Title:</td><td width=200px id="itemTitle">Nothing selected</td></tr>
+					<tr><td>Year:</td><td id="itemYear">&nbsp;</td></tr>
+					<tr><td>Summary:</td><td id="itemSummary">&nbsp;</td></tr>
+					<tr><td>Rating:</td><td id="itemRating">&nbsp;</td></tr>
+					<tr><td>Duration:</td><td id="itemDuration">&nbsp;</td></tr>
+					<tr><td>Status:</td><td id="itemStatus">&nbsp;</td></tr>
+					<tr><td>Watched:</td><td id="itemWatched">&nbsp;</td></tr>
+					<tr><td>Notes:</td><td id="itemNotes">&nbsp;</td></tr>
+					<tr><td>Sources:</td><td id="itemSources">&nbsp;</td></tr>
+					<tr><td>Type:</td><td id="itemType">&nbsp;</td></tr>
+					<tr><td>Category:</td><td id="itemCategory">&nbsp;</td></tr>
+					<tr><td>Owner:</td><td id="itemOwner">&nbsp;</td></tr>
+				</table>-->
+				<h2>TEMP LOG</h2>
+				<p id="mepLog"></p>
+			</div>
+		</div> 
+		  
+		<script>
+			readWatchListSourceJson();
+			//displayListing();
+			buildFromFilters();
+		</script>
+	</body>
+</html>
