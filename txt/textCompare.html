@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Side-by-Side Text Diff</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 20px;
+      }
+      textarea {
+        width: 100%;
+        height: 200px;
+      }
+      .inputs {
+        display: flex;
+        gap: 20px;
+      }
+      .column {
+        width: 50%;
+      }
+      .diff-container {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .diff-box {
+        width: 50%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        white-space: pre-wrap;
+        font-family: monospace;
+      }
+      .removed {
+        background-color: #f7c5c5;
+      } /* red */
+      .added {
+        background-color: #c8f7c5;
+      } /* green */
+    </style>
+  </head>
+  <body>
+    <h2>Side-by-Side Text Comparison</h2>
+
+    <div class="inputs">
+      <div class="column">
+        <textarea id="text1" placeholder="Left text (A)"></textarea>
+      </div>
+      <div class="column">
+        <textarea id="text2" placeholder="Right text (B)"></textarea>
+      </div>
+    </div>
+
+    <button onclick="runDiff()">Compare</button>
+
+    <div class="diff-container">
+      <div id="leftDiff" class="diff-box"></div>
+      <div id="rightDiff" class="diff-box"></div>
+    </div>
+
+    <script>
+      function runDiff() {
+        const a = document.getElementById("text1").value.split(/\n/);
+        const b = document.getElementById("text2").value.split(/\n/);
+
+        let leftOut = "";
+        let rightOut = "";
+
+        const max = Math.max(a.length, b.length);
+
+        for (let i = 0; i < max; i++) {
+          const lineA = a[i] || "";
+          const lineB = b[i] || "";
+
+          if (lineA === lineB) {
+            leftOut += lineA + "\n";
+            rightOut += lineB + "\n";
+          } else {
+            // Line removed from A
+            if (lineA && !b.includes(lineA)) {
+              leftOut += `<span class="removed">${lineA}</span>\n`;
+            } else {
+              leftOut += lineA + "\n";
+            }
+
+            // Line added in B
+            if (lineB && !a.includes(lineB)) {
+              rightOut += `<span class="added">${lineB}</span>\n`;
+            } else {
+              rightOut += lineB + "\n";
+            }
+          }
+        }
+
+        document.getElementById("leftDiff").innerHTML = leftOut;
+        document.getElementById("rightDiff").innerHTML = rightOut;
+      }
+    </script>
+  </body>
+</html>

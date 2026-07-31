@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Text Analyzer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      textarea {
+        width: 100%;
+        height: 300px;
+        font-size: 14px;
+      }
+      .stats {
+        margin-top: 15px;
+        font-size: 16px;
+      }
+      .issue {
+        color: #b30000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Text Analyzer</h2>
+    <textarea id="input" placeholder="Paste your text here..."></textarea>
+
+    <div class="stats">
+      <p>
+        <strong>Characters (including spaces):</strong> <span id="chars"></span>
+      </p>
+      <p>
+        <strong>Characters (excluding spaces):</strong>
+        <span id="charsNoSpace"></span>
+      </p>
+      <p><strong>Words:</strong> <span id="words"></span></p>
+      <p><strong>Lines:</strong> <span id="lines"></span></p>
+    </div>
+
+    <h3>Wasted Space Checks</h3>
+    <ul>
+      <li>
+        <strong>Double spaces:</strong>
+        <span id="doubleSpaces" class="issue"></span>
+      </li>
+      <li>
+        <strong>Trailing spaces:</strong>
+        <span id="trailingSpaces" class="issue"></span>
+      </li>
+      <li>
+        <strong>Leading spaces:</strong>
+        <span id="leadingSpaces" class="issue"></span>
+      </li>
+      <li><strong>Tabs:</strong> <span id="tabs" class="issue"></span></li>
+      <li>
+        <strong>Multiple blank lines:</strong>
+        <span id="blankLines" class="issue"></span>
+      </li>
+    </ul>
+
+    <script>
+      function updateStats() {
+        const text = document.getElementById("input").value;
+
+        // Basic counts
+        document.getElementById("chars").textContent = text.length;
+        document.getElementById("charsNoSpace").textContent = text.replace(
+          /\s+/g,
+          "",
+        ).length;
+        document.getElementById("words").textContent = text.trim()
+          ? text.trim().split(/\s+/).length
+          : 0;
+        document.getElementById("lines").textContent = text.split(/\n/).length;
+
+        // Wasted space checks
+        const doubleSpaces   = (text.match(/ {2,}/g) || []).length;
+        const trailingSpaces = (text.match(/ +$/gm) || []).length;
+        const leadingSpaces  = (text.match(/^ +/gm) || []).length;
+        const tabs           = (text.match(/\t/g) || []).length;
+        const blankLines     = (text.match(/\n\s*\n/g) || []).length;
+
+        document.getElementById("doubleSpaces").textContent   = doubleSpaces;
+        document.getElementById("trailingSpaces").textContent = trailingSpaces;
+        document.getElementById("leadingSpaces").textContent  = leadingSpaces;
+        document.getElementById("tabs").textContent           = tabs;
+        document.getElementById("blankLines").textContent     = blankLines;
+      }
+
+      document.getElementById("input").addEventListener("input", updateStats);
+    </script>
+  </body>
+</html>
